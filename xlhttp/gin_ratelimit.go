@@ -6,6 +6,7 @@ package xlhttp
 import (
 	"github.com/didip/tollbooth"
 	"github.com/gin-gonic/gin"
+	"github.com/seanlan/goutils/xlerror"
 )
 
 // RateLimitMiddleware
@@ -17,7 +18,7 @@ func RateLimitMiddleware(max float64) gin.HandlerFunc {
 		r := Build(c)
 		httpError := tollbooth.LimitByRequest(lmt, c.Writer, c.Request)
 		if httpError != nil {
-			r.JsonReturn(ErrRateLimit)
+			r.JsonReturn(xlerror.ErrRateLimit)
 			r.ctx.Abort()
 		} else {
 			c.Next()

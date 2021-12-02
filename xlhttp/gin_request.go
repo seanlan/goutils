@@ -3,6 +3,7 @@ package xlhttp
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
+	"github.com/seanlan/goutils/xlerror"
 	"net/http"
 	"strconv"
 	"strings"
@@ -45,7 +46,7 @@ func (r *ApiRequest) RequestParser(args interface{}) (err error) {
 		err = r.ctx.ShouldBindQuery(args)
 	}
 	if err != nil {
-		r.JsonReturn(ErrRequest)
+		r.JsonReturn(xlerror.ErrRequest)
 	}
 	return err
 }
@@ -55,7 +56,7 @@ func (r *ApiRequest) JsonReturn(err error, args ...interface{}) {
 	if len(args) > 0 {
 		data = args[0]
 	}
-	ec := Cause(err)
+	ec := xlerror.Cause(err)
 	r.ctx.JSON(http.StatusOK, &JsonResponse{
 		Code:    ec.Code(),
 		Data:    data,

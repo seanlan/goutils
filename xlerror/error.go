@@ -1,4 +1,4 @@
-package xlhttp
+package xlerror
 
 import (
 	"fmt"
@@ -94,6 +94,7 @@ func String(e string) Error {
 	}
 }
 
+// Cause 解析错误码
 func Cause(err error) Errors {
 	if err == nil {
 		return Success
@@ -104,10 +105,12 @@ func Cause(err error) Errors {
 	return String(err.Error())
 }
 
+// Equal 两个错误错误码是否一致
 func Equal(err error, e Error) bool {
 	return Cause(err).Code() == e.Code()
 }
 
+// Wrap 对错误描述进行包装
 func Wrap(err error, message string) Errors {
 	ec := Cause(err)
 	return Error{
