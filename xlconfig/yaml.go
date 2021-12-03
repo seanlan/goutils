@@ -10,7 +10,7 @@ type YamlProvider struct {
 
 func NewYAMLProvider(path string) (provider Provider, err error) {
 	if len(path) == 0 {
-		path = "conf.d/conf.yaml"
+		path = "conf.yaml"
 	}
 	yaml, err := _config.NewYAML(_config.File(path))
 	if err != nil {
