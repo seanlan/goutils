@@ -11,7 +11,6 @@ var (
 
 var (
 	NullError       = add(0, "NULL")
-	Ok              = add(200, "SUCCESS")
 	Success         = add(200, "SUCCESS")
 	ErrRequest      = add(400, "请求参数错误")
 	ErrNotFind      = add(404, "没有找到")
