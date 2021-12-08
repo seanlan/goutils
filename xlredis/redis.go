@@ -13,7 +13,7 @@ type Redis struct {
 	Client redis.UniversalClient
 }
 
-func NewClient(uri, username, password, prefix string, db int) (client Redis, err error) {
+func NewClient(uri, username, password, prefix string, db int) (client *Redis, err error) {
 	addrs := strings.Split(uri, ",")
 	opt := &redis.UniversalOptions{
 		Addrs:    addrs,
@@ -22,7 +22,7 @@ func NewClient(uri, username, password, prefix string, db int) (client Redis, er
 		Password: password,
 	}
 	c := redis.NewUniversalClient(opt)
-	return Redis{prefix: prefix, Client: c}, c.Ping(context.TODO()).Err()
+	return &Redis{prefix: prefix, Client: c}, c.Ping(context.TODO()).Err()
 }
 
 func (i *Redis) BuildKey(key string) string {
