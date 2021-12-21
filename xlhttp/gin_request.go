@@ -46,7 +46,7 @@ func (r *ApiRequest) RequestParser(args interface{}) (err error) {
 		err = r.ctx.ShouldBindQuery(args)
 	}
 	if err != nil {
-		r.JsonReturn(xlerror.ErrRequest)
+		r.JsonReturn(xlerror.Wrap(xlerror.ErrRequest, err.Error()))
 	}
 	return err
 }
