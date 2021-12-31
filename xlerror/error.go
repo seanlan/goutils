@@ -10,7 +10,7 @@ var (
 )
 
 var (
-	NullError       = add(0, "NULL")
+	NullError       = add(0, "")
 	Success         = add(200, "SUCCESS")
 	ErrRequest      = add(400, "请求参数错误")
 	ErrNotFind      = add(404, "没有找到")
@@ -85,7 +85,7 @@ func (e Error) Equal(err error) bool { return Equal(err, e) }
 
 func String(e string) Error {
 	if e == "" {
-		return Success
+		return NullError
 	}
 	return Error{
 		code:    500,
@@ -96,7 +96,7 @@ func String(e string) Error {
 // Cause 解析错误码
 func Cause(err error) Errors {
 	if err == nil {
-		return Success
+		return NullError
 	}
 	if ec, ok := errors.Cause(err).(Errors); ok {
 		return ec

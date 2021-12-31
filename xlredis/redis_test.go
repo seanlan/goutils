@@ -38,12 +38,12 @@ func TestNewClient(t *testing.T) {
 				t.Errorf("NewClient() error = %v", err)
 				return
 			}
-			err = gotClient.Set(context.TODO(),"test", "test", 0).Err()
+			err = gotClient.Set(context.TODO(), "test", "test", 0).Err()
 			if err != nil {
 				t.Errorf("gotClient.Set() error = %v", err)
 				return
 			}
-			r,err := gotClient.Get(context.TODO(),"test").Result()
+			r, err := gotClient.Get(context.TODO(), "test").Result()
 			t.Log(r, err)
 		})
 	}

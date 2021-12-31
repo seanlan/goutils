@@ -13,8 +13,7 @@ import (
 type JsonResponse struct {
 	Code    int         `json:"code,required"`
 	Data    interface{} `json:"data,omitempty"`
-	Detail  string      `json:"detail,required"`
-	Message string      `json:"msg,required"`
+	Message string      `json:"message,required"`
 }
 
 type ApiRequest struct {

@@ -60,7 +60,6 @@ func JWTHeadMiddleware(jwt *JWT) gin.HandlerFunc {
 	}
 }
 
-
 type JWT struct {
 	SigningKey []byte
 	Expire     time.Duration
